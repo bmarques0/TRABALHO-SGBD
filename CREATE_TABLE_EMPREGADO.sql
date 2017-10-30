@@ -1,5 +1,5 @@
 CREATE TABLE tb_empregado(
-        cod_emp int NOT NULL,
+        cod_emp int,
         nome_emp VARCHAR2(50) NOT NULL, 
         tel_emp int NOT NULL,
         sexo_emp int,
