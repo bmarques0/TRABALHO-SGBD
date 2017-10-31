@@ -1,8 +1,8 @@
 CREATE TABLE tb_empregado(
-        cod_emp int NOT NULL,
+        cod_emp int,
         nome_emp VARCHAR2(50) NOT NULL, 
         tel_emp int NOT NULL,
-        sexo_emp int,
+        sexo_emp CHAR(1),
         datanasc_emp date,
         cfp_emp int UNIQUE,
         rg_emp int UNIQUE,
