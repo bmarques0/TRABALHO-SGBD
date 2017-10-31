@@ -1,0 +1,304 @@
+CREATE TABLE tb_empregado(
+        cod_emp int,
+        nome_emp VARCHAR2(50) NOT NULL, 
+        tel_emp int NOT NULL,
+        sexo_emp CHAR(1),
+        datanasc_emp date,
+        cfp_emp int UNIQUE,
+        rg_emp int UNIQUE,
+        mae_emp VARCHAR2(50),
+        rua_emp VARCHAR2(100),
+        cidade_emp VARCHAR2(40),
+        uf_emp VARCHAR2(5),
+        cep_emp int NOT NULL,
+        salario_emp int,
+        PRIMARY KEY (cod_emp),
+        CONSTRAINT uk_emp UNIQUE (nome_emp, mae_emp, datanasc_emp),
+        CONSTRAINT ck_pk CHECK (sexo_emp in ('M', 'F') AND salario_emp > 800)
+    );
+	
+	
+	CREATE TABLE tb_produto
+(
+  cod_prod int,
+  nome_prod varchar(50),
+  valor_prod int,
+  PRIMARY KEY (cod_prod)
+);  
+
+CREATE TABLE tb_gerente
+(
+    cod_gerente int,
+    cod_emp int,
+    PRIMARY KEY (cod_gerente),
+    CONSTRAINT fk_codEmp1 FOREIGN KEY (cod_emp) REFERENCES tb_empregado(cod_emp)
+);
+
+
+CREATE TABLE tb_venda(
+    codProduto int,
+    codEmpregado int,
+    qtdade_venda INT,
+    dataHora_venda DATE,
+    CONSTRAINT  fk_codProd FOREIGN KEY(codProduto) REFERENCES tb_produto(cod_prod),
+    CONSTRAINT fk_codEmp FOREIGN KEY (codEmpregado) REFERENCES tb_empregado(cod_emp),
+	CONSTRAINT pk_venda PRIMARY KEY (codEmpregado, codProduto)
+);
+
+
+------------------------------------------------------------------------
+
+INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+    1, 'BRUNO MARQUES', 99999999, 'M', '05-05-00', 6655044979, 104634444, 'MONICA ADRIANA', ' ELOI ORESTES ZEGLIN', 'CURITIBA', 'PR', 81110000,3000
+);
+
+INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+    2,'Pedro Henrique Rafael Pietro Fernandes',4129063355,'M','10-02-95',88281260947,460731889,'MARIA JOANA','Rua Alcides Munhoz','CURITIBA','PR',80810040,1500);
+	
+	INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+    3,'Luiza Bruna Campos',4426966090,'F','18-05-95',71959228986,326150572,'MARIA JUANA NUNES','Avenida Doutor Jose','ASTORGA','PR',86730970,5000
+);
+
+INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+    4,'Ester Amanda Nascimento',4338710767,'M','17-03-84',69094665948,147333234,'MARIA JUANA NUNES NUNES','Rua Leomil Venerio','Apucarana','PR',86813032,850
+);
+
+INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+	5,'Antonella Isabelle Lima',4328104415,'F','10-07-84',28867498932,478201187,'MARIA JUANA MAE ANTONELLA','Rua Apucarana 148','Vila Reis','PR',86819970,900	
+);
+
+INSERT INTO tb_empregado
+(
+    cod_emp,
+    nome_emp,
+    tel_emp,
+    sexo_emp,
+    datanasc_emp,
+    cfp_emp,
+    rg_emp,
+    mae_emp,
+    rua_emp,
+    cidade_emp,
+    uf_emp,
+    cep_emp,
+    salario_emp
+)
+VALUES
+(
+    6, 'LUCAS NAKAMURA', 4125180116, 'M', '06-03-1996', 99949593956, 357437767, 'MARIA JUANA NAKAMURA', 'Rua Laura Evangelina Bastos do Valle', 'CURITIBA', 'PR', 81270610,4500
+);
+
+
+
+INSERT INTO tb_gerente 
+(
+	cod_gerente, cod_empregado
+)
+VALUES
+(
+	1,1
+);
+
+INSERT INTO tb_gerente 
+(
+	cod_gerente, cod_empregado
+)
+VALUES
+(
+	2,2
+);
+
+
+INSERT INTO tb_gerente 
+(
+	cod_gerente, cod_empregado
+)
+VALUES
+(
+	3,3
+);
+
+
+
+INSERT INTO tb_produto
+(
+  cod_prod, nome_prod,valor_prod
+)
+VALUES 
+(
+    1, 'Mouse Microsoft', 8000
+);
+
+INSERT INTO tb_produto
+(
+  cod_prod, nome_prod,valor_prod
+)
+VALUES 
+(
+    2, 'Monitor HD 21 ', 700
+);
+
+
+INSERT INTO tb_produto
+(
+  cod_prod, nome_prod,valor_prod
+)
+VALUES 
+(
+    3, 'Celular iPhone 6S Plus', 3500
+);
+
+
+INSERT INTO tb_produto
+(
+  cod_prod, nome_prod,valor_prod
+)
+VALUES 
+(
+    1, 'Mouse Microsoft', 8000
+);
+
+
+INSERT INTO tb_venda
+(
+  codProduto, codEmpregado, qtdade_venda, dataHora_venda
+)
+VALUES 
+(
+    1, 1, 400, '31-10-2017'
+);
+
+INSERT INTO tb_venda
+(
+  codProduto, codEmpregado, qtdade_venda, dataHora_venda
+)
+VALUES 
+(
+    2, 2, 250, '01-01-2016'
+);
+
+INSERT INTO tb_venda
+(
+  codProduto, codEmpregado, qtdade_venda, dataHora_venda
+)
+VALUES 
+(
+    3, 3, 950, '05-08-2017'
+);
+
+INSERT INTO tb_venda
+(
+  codProduto, codEmpregado, qtdade_venda, dataHora_venda
+)
+VALUES 
+(
+    4, 4, 1050, '26-10-2015'
+);
+
+INSERT INTO tb_venda
+(
+  codProduto, codEmpregado, qtdade_venda, dataHora_venda
+)
+VALUES 
+(
+    5, 5, 150, '22-02-2017'
+);
+
+------------------------------------------------------------------------
+
+SELECT * FROM tb_empregado;
+
+SELECT * FROM tb_gerente;
+
+
+SELECT * FROM tb_produto;
+
+SELECT * FROM tb_venda;
+
+
+
